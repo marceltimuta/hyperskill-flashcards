@@ -28,10 +28,13 @@ public class Log {
     }
 
     public void saveLog() {
-        try (PrintWriter printWriter = new PrintWriter(new File("todayLog.txt"))) {
+        outMessage("File name:");
+        String logFileName = inMessage();
+        try (PrintWriter printWriter = new PrintWriter(new File(logFileName))) {
             for (String line : logs) {
                 printWriter.println(line);
             }
+            outMessage("The log has been saved.");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
